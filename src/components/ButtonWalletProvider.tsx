@@ -23,8 +23,9 @@ const ButtonWalletProvider: React.FC<IButtonWalletProvider> = ({
     <button
       disabled={!ready}
       onClick={handleConnectWallet}
-      className="bg-purple-800 rounded-lg px-3 py-2 w-full text-white font-semibold font-mono hover:bg-white hover:text-purple-800 transition-colors duration-500"
+      className="bg-purple-800 rounded-lg px-3 py-2 w-full text-white font-semibold font-mono hover:bg-white hover:text-purple-800 transition-colors duration-500 flex justify-center gap-3 items-center"
     >
+      <img alt={connector?.name} src={connector.icon} />
       {connector.name}
     </button>
   );
