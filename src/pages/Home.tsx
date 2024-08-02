@@ -1,5 +1,4 @@
 import {
-  BaseError,
   Connector,
   useAccount,
   useChainId,
@@ -8,14 +7,9 @@ import {
   useEnsAvatar,
   useEnsName,
 } from "wagmi";
-import { ConnectErrorType } from "wagmi/actions";
 
 import ButtonWalletProvider from "../components/ButtonWalletProvider";
 import Toast, { ToastType } from "../components/Toast";
-
-type AdditionalError = {
-  shortMessage: string;
-};
 
 const Home = () => {
   const chainId = useChainId();
@@ -37,9 +31,10 @@ const Home = () => {
           });
         },
         onError(error) {
-          console.log({ error });
+          const errMessage =
+            "shortMessage" in error ? error.shortMessage : error.message;
           Toast.fire({
-            title: error?.shortMessage,
+            title: errMessage,
             icon: ToastType.ERROR,
           });
         },
