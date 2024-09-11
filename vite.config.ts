@@ -8,6 +8,8 @@ export default defineConfig(({ mode }) => {
   return {
     define: {
       "process.env": env,
+      global:
+        process.env.NODE_ENV === "development" ? { global: "window" } : {},
     },
     plugins: [react()],
   };
